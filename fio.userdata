@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#Title: Cloud-init fio script
+#Description: starts stress testing the VM
+#Maintainer: Jonas Libbrecht
+
+#Install fio
+apt-get update
+apt-get install -y fio
+
+fio --name=fio-stress-test --ioengine=libaio --iodepth=4 --rw=randwrite --bs=32k --direct=0 --size=10000m --numjobs=4
+
+#Type of io pattern. Accepted values are:
+#
+#read		Sequential reads
+#write		Sequential writes
+#randwrite	Random writes
+#randread	Random reads
+#rw,readwrite	Sequential mixed reads and writes
+#randrw		Random mixed reads and writes
+#trimwrite	Mixed trims and writes. Blocks will be
+#		trimmed first, then written to.
