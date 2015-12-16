@@ -28,8 +28,10 @@ apt-get install -y fio
 #script
 for i in "write" "read" "randwrite" "randread" "readwrite" "randrw" "trimwrite"
 do
-   fio --name=fio-stress-test --ioengine=libaio --iodepth=4 --rw="$i" --bs=32k --direct=0 --size=20000m --numjobs=4 --loops=10 >> fio_output.log
    echo "============$i========================$i========================$i============" >>  fio_output.log
+   echo | date >> fio_output.log
+   echo "============$i========================$i========================$i============" >>  fio_output.log
+   fio --name=fio-stress-test --ioengine=libaio --iodepth=4 --rw="$i" --bs=32k --direct=0 --size=20000m --numjobs=4 --loops=10 >> fio_output.log
 done
 
 #transfer script to fileserver
