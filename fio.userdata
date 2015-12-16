@@ -14,7 +14,12 @@ echo nameserver 8.8.8.8 > /etc/resolv.conf
 apt-get update
 apt-get install -y fio
 
-fio --name=fio-stress-test --ioengine=libaio --iodepth=4 --rw=randwrite --bs=32k --direct=0 --size=10000m --numjobs=4
+#script
+for i in "read" "write" "randwrite" "randread" "readwrite" "randrw" "trimwrite"
+do 
+   echo 
+   fio --name=fio-stress-test --ioengine=libaio --iodepth=4 --rw="$i" --bs=32k --direct=0 --size=20000m --numjobs=4; rm -rf fio*
+done
 
 #Type of io pattern. Accepted values are:
 #
@@ -22,7 +27,7 @@ fio --name=fio-stress-test --ioengine=libaio --iodepth=4 --rw=randwrite --bs=32k
 #write		Sequential writes
 #randwrite	Random writes
 #randread	Random reads
-#rw,readwrite	Sequential mixed reads and writes
+#readwrite	Sequential mixed reads and writes
 #randrw		Random mixed reads and writes
 #trimwrite	Mixed trims and writes. Blocks will be
 #		trimmed first, then written to.
