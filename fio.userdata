@@ -4,6 +4,17 @@
 #Description: starts stress testing the VM
 #Maintainer: Jonas Libbrecht
 
+#Type of io pattern. Accepted values are:
+#
+#read		Sequential reads
+#write		Sequential writes
+#randwrite	Random writes
+#randread	Random reads
+#readwrite	Sequential mixed reads and writes
+#randrw		Random mixed reads and writes
+#trimwrite	Mixed trims and writes. Blocks will be
+#		trimmed first, then written to.
+
 #adduser
 sudo useradd support
 sudo echo "support:support" | chpasswd
@@ -16,17 +27,9 @@ apt-get install -y fio
 
 #script
 for i in "write" "read" "randwrite" "randread" "readwrite" "randrw" "trimwrite"
-do 
-   fio --name=fio-stress-test --ioengine=libaio --iodepth=4 --rw="$i" --bs=32k --direct=0 --size=20000m --numjobs=4 --loops=10 --bandwidth-log=band.log --latency-log=lat.log;
+do
+   fio --name=fio-stress-test --ioengine=libaio --iodepth=4 --rw="$i" --bs=32k --direct=0 --size=20000m --numjobs=4 --loops=10 >> fio_output.log
+   echo "============$i========================$i========================$i============" >>  fio_output.log
 done
 
-#Type of io pattern. Accepted values are:
-#
-#read		Sequential reads
-#write		Sequential writes
-#randwrite	Random writes
-#randread	Random reads
-#readwrite	Sequential mixed reads and writes
-#randrw		Random mixed reads and writes
-#trimwrite	Mixed trims and writes. Blocks will be
-#		trimmed first, then written to.
+#transfer script to fileserver
