@@ -35,3 +35,5 @@ do
 done
 
 #transfer script to fileserver
+#export SSHPASS=rooter
+#sshpass -e scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null fio_output.log 10.0.0.1:/root/collector
