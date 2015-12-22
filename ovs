@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#Title: Cloud-init fio script
+#Description: starts stress testing the VM
+#Maintainer: Jonas Libbrecht
+
+#adduser
+sudo useradd support
+sudo echo "support:support" | chpasswd
+sudo adduser support sudo
+
+#Install fio
+echo nameserver 8.8.8.8 > /etc/resolv.conf
+apt-get update
