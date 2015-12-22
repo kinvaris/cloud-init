@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#Maintainer: Jonas Libbrecht
-
-#adduser
 sudo useradd support
 sudo echo "support:support" | chpasswd
 sudo adduser support sudo
