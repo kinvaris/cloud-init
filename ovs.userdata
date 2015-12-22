@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#Title: Cloud-init fio script
-#Description: starts stress testing the VM
 #Maintainer: Jonas Libbrecht
 
 #adduser
