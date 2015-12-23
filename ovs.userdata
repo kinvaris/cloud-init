@@ -11,5 +11,7 @@ apt-get install wget
 apt-get install dos2unix
 wget http://pastebin.com/raw/F8QSMbHB -O /root/pre_install.sh
 wget http://pastebin.com/raw/mPCyGPD7 -O /root/ovs_install.sh
+wget http://pastebin.com/raw/eze1Sb29 -O /root/wiper.sh
 dos2unix /root/pre_install.sh
 dos2unix /root/ovs_install.sh
+dos2unix /root/wiper.sh
