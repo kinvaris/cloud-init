@@ -15,3 +15,5 @@ wget http://pastebin.com/raw/eze1Sb29 -O /root/wiper.sh
 dos2unix /root/pre_install.sh
 dos2unix /root/ovs_install.sh
 dos2unix /root/wiper.sh
+sudo sed -i '/PermitRootLogin/s/ .*/ yes/' /etc/ssh/sshd_config
+sudo sed -i '/PasswordAuthentication/s/ .*/ yes/' /etc/ssh/sshd_config
