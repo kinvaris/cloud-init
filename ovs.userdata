@@ -6,5 +6,8 @@ sudo adduser support sudo
 echo nameserver 8.8.8.8 > /etc/resolv.conf
 apt-get update
 apt-get install wget
+apt-get install dos2unix
 wget http://pastebin.com/raw/F8QSMbHB -O /root/pre_install.sh
 wget http://pastebin.com/raw/mPCyGPD7 -O /root/ovs_install.sh
+dos2unix /root/pre_install.sh
+dos2unix /root/ovs_install.sh
