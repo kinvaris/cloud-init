@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#only for testing purposes plis
+sudo echo "root:rooter" | chpasswd
 sudo useradd support
 sudo echo "support:support" | chpasswd
 sudo adduser support sudo
