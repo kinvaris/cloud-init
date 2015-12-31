@@ -5,15 +5,25 @@ sudo echo "root:rooter" | chpasswd
 sudo useradd support
 sudo echo "support:support" | chpasswd
 sudo adduser support sudo
-echo nameserver 8.8.8.8 > /etc/resolv.conf
+echo nameserver 172.19.0.1 > /etc/resolv.conf
 apt-get update
 apt-get install wget
 apt-get install dos2unix
-wget http://pastebin.com/raw/F8QSMbHB -O /root/pre_install.sh
-wget http://pastebin.com/raw/mPCyGPD7 -O /root/ovs_install.sh
-wget http://pastebin.com/raw/eze1Sb29 -O /root/wiper.sh
+
+wget https://raw.githubusercontent.com/kinvaris/cloud-init/master/pre_config.sh -O /root/pre_install.sh
+wget https://raw.githubusercontent.com/kinvaris/cloud-init/master/ovs_install.sh -O /root/ovs_install.sh
+
 dos2unix /root/pre_install.sh
 dos2unix /root/ovs_install.sh
-dos2unix /root/wiper.sh
-sudo sed -i '/PermitRootLogin/s/ .*/ yes/' /etc/ssh/sshd_config
-sudo sed -i '/PasswordAuthentication/s/ .*/ yes/' /etc/ssh/sshd_config
+
+cat << EOF > /etc/network/interfaces
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+        address 10.100.69.154
+        netmask 255.255.0.0
+        gateway 10.100.0.1
+EOF
+
