@@ -1,21 +1,13 @@
 #!/bin/bash
 
-#only for testing purposes plis
+#user conf
 sudo echo "root:rooter" | chpasswd
 sudo useradd support
 sudo echo "support:support" | chpasswd
 sudo adduser support sudo
+
+#network conf
 echo nameserver 172.19.0.1 > /etc/resolv.conf
-apt-get update
-apt-get install wget
-apt-get install dos2unix
-
-wget https://raw.githubusercontent.com/kinvaris/cloud-init/master/pre_config.sh -O /root/pre_install.sh
-wget https://raw.githubusercontent.com/kinvaris/cloud-init/master/ovs_install.sh -O /root/ovs_install.sh
-
-dos2unix /root/pre_install.sh
-dos2unix /root/ovs_install.sh
-
 cat << EOF > /etc/network/interfaces
 auto lo
 iface lo inet loopback
@@ -26,4 +18,20 @@ iface eth0 inet static
         netmask 255.255.0.0
         gateway 10.100.0.1
 EOF
+
+sudo ifdown --all; sudo ifup --all
+
+#install ovs
+apt-get update
+apt-get install wget
+apt-get install dos2unix
+
+wget https://raw.githubusercontent.com/kinvaris/cloud-init/master/pre_config.sh -O /root/pre_install.sh
+wget https://raw.githubusercontent.com/kinvaris/cloud-init/master/ovs_install.sh -O /root/ovs_install.sh
+
+dos2unix /root/pre_install.sh
+dos2unix /root/ovs_install.sh
+
+bash /root/pre_install.sh eth0 testcluster01
+bash /root/ovs_install.sh
 
