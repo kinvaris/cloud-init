@@ -29,8 +29,7 @@ cat "$HOSTNAME_PREFIX$HOSTNAME_UUID" > /etc/hostname
 
 #install ovs
 apt-get update
-apt-get install wget
-apt-get install dos2unix
+apt-get install wget byobu dos2unix
 
 wget https://raw.githubusercontent.com/kinvaris/cloud-init/master/pre_config.sh -O /root/pre_install.sh
 wget https://raw.githubusercontent.com/kinvaris/cloud-init/master/ovs_install.sh -O /root/ovs_install.sh
@@ -38,6 +37,7 @@ wget https://raw.githubusercontent.com/kinvaris/cloud-init/master/ovs_install.sh
 dos2unix /root/pre_install.sh
 dos2unix /root/ovs_install.sh
 
-#bash /root/pre_install.sh eth0 testcluster01
-#bash /root/ovs_install.sh
+screen -dmS ops_01 sh
+screen -S ops_01 -X stuff "bash /root/pre_install.sh eth0 testcluster01; bash /root/ovs_install.sh
+"
 
