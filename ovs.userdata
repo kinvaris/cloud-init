@@ -23,7 +23,7 @@ sudo ifdown --all; sudo ifup --all
 
 #add hostname
 HOSTNAME_UUID=$(( ( RANDOM % 10000000000 )  + 1 ))
-HOSTNAME_PREFIX="ubuntu_"
+HOSTNAME_PREFIX="ubuntu"
 cat "127.0.1.1 $HOSTNAME_PREFIX$HOSTNAME_UUID" >> /etc/hosts
 cat "$HOSTNAME_PREFIX$HOSTNAME_UUID" > /etc/hostname
 
