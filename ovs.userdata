@@ -27,6 +27,10 @@ HOSTNAME_PREFIX="ubuntu"
 cat "127.0.1.1 $HOSTNAME_PREFIX$HOSTNAME_UUID" >> /etc/hosts
 cat "$HOSTNAME_PREFIX$HOSTNAME_UUID" > /etc/hostname
 
+#enable ssh
+sed -i '/PermitRootLogin/s/ .*/ yes/' /etc/ssh/sshd_config
+sed -i '/PasswordAuthentication/s/ .*/ yes/' /etc/ssh/sshd_config
+
 #install ovs
 apt-get update
 apt-get install wget byobu dos2unix
