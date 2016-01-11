@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get install kvm libvirt0 python-libvirt virtinst ntp
+sudo apt-get install -y --force-yes kvm libvirt0 python-libvirt virtinst ntp
 
 sudo sed -i '/PermitRootLogin/s/ .*/ yes/' /etc/ssh/sshd_config
 sudo sed -i '/PasswordAuthentication/s/ .*/ yes/' /etc/ssh/sshd_config
