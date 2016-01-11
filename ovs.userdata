@@ -21,6 +21,12 @@ EOF
 
 sudo ifdown --all; sudo ifup --all
 
+#add hostname
+HOSTNAME_UUID=$(( ( RANDOM % 10000000000 )  + 1 ))
+HOSTNAME_PREFIX="ubuntu_"
+cat "127.0.1.1 $HOSTNAME_PREFIX$HOSTNAME_UUID" >> /etc/hosts
+cat "$HOSTNAME_PREFIX$HOSTNAME_UUID" > /etc/hostname
+
 #install ovs
 apt-get update
 apt-get install wget
@@ -32,6 +38,6 @@ wget https://raw.githubusercontent.com/kinvaris/cloud-init/master/ovs_install.sh
 dos2unix /root/pre_install.sh
 dos2unix /root/ovs_install.sh
 
-bash /root/pre_install.sh eth0 testcluster01
-bash /root/ovs_install.sh
+#bash /root/pre_install.sh eth0 testcluster01
+#bash /root/ovs_install.sh
 
