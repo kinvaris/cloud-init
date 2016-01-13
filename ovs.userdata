@@ -14,7 +14,7 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet static
-        address 10.100.69.154
+        address 10.100.69.155
         netmask 255.255.0.0
         gateway 10.100.0.1
 EOF
