@@ -43,6 +43,8 @@ dos2unix /root/pre_install.sh
 dos2unix /root/ovs_install.sh
 
 screen -dmS ops_01 sh
-screen -S ops_01 -X stuff "bash /root/pre_install.sh eth0 testcluster01; bash /root/ovs_install.sh
+screen -S ops_01 -X stuff "bash /root/ovs_install.sh
 "
+
+#bash /root/pre_install.sh eth0 testcluster01; 
 
