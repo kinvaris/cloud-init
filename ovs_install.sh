@@ -9,7 +9,7 @@ sudo echo "vm.swappiness=1" >> /etc/sysctl.conf
 sudo echo "134217728" > /proc/sys/vm/dirty_background_bytes
 sudo echo "vm.dirty_background_bytes = 134217728" >> /etc/sysctl.conf
 
-echo "deb http://apt.openvstorage.org unstable main" > /etc/apt/sources.list.d/ovsaptrepo.list
+echo "deb http://apt.openvstorage.org eugene-updates main" > /etc/apt/sources.list.d/ovsaptrepo.list
 
 sudo apt-get update
 sudo apt-get install -y --force-yes -t eugene-updates openvstorage-hc
