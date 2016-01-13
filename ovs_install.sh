@@ -12,4 +12,4 @@ sudo echo "vm.dirty_background_bytes = 134217728" >> /etc/sysctl.conf
 echo "deb http://apt.openvstorage.org unstable main" > /etc/apt/sources.list.d/ovsaptrepo.list
 
 sudo apt-get update
-sudo apt-get install -y --force-yes -t unstable openvstorage-hc
+sudo apt-get install -y --force-yes -t eugene-updates openvstorage-hc
