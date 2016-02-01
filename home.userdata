@@ -14,7 +14,7 @@ iface lo inet loopback
 
 auto p3p1
 iface p3p1 inet static
-        address 192.168.1.171
+        address 192.168.1.181
         netmask 255.255.255.0
         gateway 192.168.1.1
 EOF
