@@ -7,7 +7,7 @@ sudo echo "support:support" | chpasswd
 sudo adduser support sudo
 
 #network conf
-echo nameserver 172.19.0.1 > /etc/resolv.conf
+echo nameserver 8.8.8.8 > /etc/resolv.conf
 cat << EOF > /etc/network/interfaces
 auto lo
 iface lo inet loopback
