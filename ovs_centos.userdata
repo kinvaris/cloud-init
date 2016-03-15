@@ -41,3 +41,5 @@ echo "$HOSTNAME_PREFIX$HOSTNAME_UUID" > /etc/hostname
 sed -i -e 's/\#PermitRootLogin/PermitRootLogin/' /etc/ssh/sshd_config
 sed -i -e 's/\#PasswordAuthentication/PasswordAuthentication/' /etc/ssh/sshd_config
 systemctl restart sshd.service
+
+reboot
