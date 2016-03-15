@@ -1,0 +1,43 @@
+#!/bin/bash
+
+#user conf
+sudo echo "root:rooter" | chpasswd
+sudo useradd support
+sudo echo "support:support" | chpasswd
+echo "support    ALL=(ALL)       ALL" >> /etc/sudoers
+
+#network conf
+cat << EOF > /etc/sysconfig/network-scripts/ifcfg-ens3
+TYPE="Ethernet"
+BOOTPROTO="none"
+DEFROUTE="yes"
+IPV4_FAILURE_FATAL="no"
+IPV6INIT="yes"
+IPV6_AUTOCONF="yes"
+IPV6_DEFROUTE="yes"
+IPV6_FAILURE_FATAL="no"
+NAME="ens3"
+UUID="10f4cfcf-c349-4b0d-80c9-f6530ceba5d7"
+DEVICE="ens3"
+ONBOOT="yes"
+IPADDR="10.100.69.140"
+PREFIX="16"
+GATEWAY="10.100.0.1"
+DNS1="172.19.0.1"
+IPV6_PEERDNS="yes"
+IPV6_PEERROUTES="yes"
+IPV6_PRIVACY="no"
+EOF
+
+systemctl restart network
+
+#add hostname
+HOSTNAME_UUID=$(( ( RANDOM % 10000000000 )  + 1 ))
+HOSTNAME_PREFIX="centos"
+echo "127.0.1.1 $HOSTNAME_PREFIX$HOSTNAME_UUID" >> /etc/hosts
+echo "$HOSTNAME_PREFIX$HOSTNAME_UUID" > /etc/hostname
+
+#enable ssh
+sed -i -e 's/\#PermitRootLogin/PermitRootLogin/' /etc/ssh/sshd_config
+sed -i -e 's/\#PasswordAuthentication/PasswordAuthentication/' /etc/ssh/sshd_config
+systemctl restart sshd.service
