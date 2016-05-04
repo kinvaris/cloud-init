@@ -8,7 +8,7 @@ sudo adduser support sudo
 
 echo nameserver 8.8.8.8 > /etc/resolv.conf
 apt-get update
-apt-get install -y fio
+apt-get install fio -y --force-yes
 
 cat << EOF > /root/fio.sh
 for i in "write" "read" "randwrite" "randread" "readwrite" "randrw" "trimwrite"
@@ -16,8 +16,10 @@ do
    echo "============$i========================$i========================$i============" >>  fio_output.log
    echo | date >> fio_output.log
    echo "============$i========================$i========================$i============" >>  fio_output.log
-   fio --name=fio-stress-test --ioengine=libaio --iodepth=4 --rw="$i" --bs=4k --direct=0 --size=20000m --numjobs=4 --loops=10 >> fio_output.log
+   fio --name=fio-stress-test --ioengine=libaio --iodepth=4 --rw="$i" --bs=4k --direct=1 --size=20000m --numjobs=4 --loops=10 >> fio_output.log
 done
+
+rm fio-stress-test.*
 EOF
 
 bash /root/fio.sh
