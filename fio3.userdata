@@ -16,7 +16,7 @@ do
    echo "============$i========================$i========================$i============" >>  fio_output.log
    echo | date >> fio_output.log
    echo "============$i========================$i========================$i============" >>  fio_output.log
-   fio --name=fio-stress-test --ioengine=libaio --iodepth=4 --rw="$i" --bs=4k --direct=1 --size=10000m --numjobs=4 --loops=10 >> fio_output.log
+   fio --name=fio-stress-test --ioengine=libaio --iodepth=4 --rw=$i --bs=4k --direct=1 --size=10000m --numjobs=4 --loops=10 >> fio_output.log
    rm fio-stress-test.*
 done
 
